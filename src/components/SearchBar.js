@@ -60,7 +60,7 @@ const SearchBar = ({addImages}) => {
 
   return (
     <div>
-        <input type="text" placeholder="Search" 
+        <input type="text" placeholder="Search Images" 
         onChange={(e)=>setSearchterm(e.target.value)}/>
         <button onClick={handleSearch}>Search</button>
     </div>
