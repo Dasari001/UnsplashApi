@@ -1,41 +1,4 @@
-// import React, { useState } from 'react'
-// import axios from 'axios';
-// import { queries } from '@testing-library/react';
-
-// const SearchBar = ({addImages}) => {
-
-//     let [searchTerm, setSearchTerm] = useState("");
-//     // let [Images, setImages] = useState([])
-
-
-//     function handleStatement() {
-//         axios.get("https://api.unsplash.com/search/photos",{
-//             params:{
-//                 client_id: "qwlE5rfVf7VTIjUlFHnJxPKaiEn0IMSa8TR1o2ZWppY",
-//                 query: searchTerm
-//             }
-//         }).then(response=>addImages(response.data.results))
-//         .catch(error=>console.log(error))
-//     }
-
-//   return (
-//     <div>
-//         <input type="text" placeholder='Search for Images'
-//         onChange={(e)=>setSearchTerm(e.target.value)}/>
-//         <button onClick={handleStatement}>Search</button>
-//     </div>
-//   )
-// }
-
-// export default SearchBar;
-
-
-
-//////////////////////////////////////////////////////
-
-
-
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import axios from 'axios';
 
 
@@ -43,16 +6,22 @@ import axios from 'axios';
 const SearchBar = ({addImages}) => {
 
   let[searchterm,setSearchterm] = useState("");
-  
+
+  useEffect(()=>{
+    handleSearch()
+    console.log('lop')
+  },[])
+
 
   function handleSearch() {
     axios.get("https://api.unsplash.com/search/photos",{
         params:{
-            client_id: 'qwlE5rfVf7VTIjUlFHnJxPKaiEn0IMSa8TR1o2ZWppY',
-            query: searchterm
-        }
+            client_id: process.env.REACT_APP_UNSPLASH_KEY,
+            query: searchterm,
+        },
     })
     .then(res=>addImages(res.data.results))
+    .catch(err=>console.log(err))
   }
 
 
@@ -73,7 +42,7 @@ export default SearchBar;
 
 
 
-// qwlE5rfVf7VTIjUlFHnJxPKaiEn0IMSa8TR1o2ZWppY
+
 
 // https://api.unsplash.com/
 
